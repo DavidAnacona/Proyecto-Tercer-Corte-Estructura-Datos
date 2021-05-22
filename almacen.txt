@@ -1,2 +1,3 @@
-*1*Sede Norte*Carrera 7 #121
-*2*Sede Centro*Carrera 9 #19
+1*Sede Centro*Kr 9 #10-64
+2*Sede Norte*calle 45 av.68
+3*Sede Sur*Kr 10

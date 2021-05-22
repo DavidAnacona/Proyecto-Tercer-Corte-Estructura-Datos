@@ -1,30 +1,29 @@
-package model;
+ package model;
 
-import java.io.Serializable;
+import controller.AlmacenCtrl;
 import java.util.StringTokenizer;
 
-// Primero voy a dejar sirviendo todo sin la foto cuando ya funcione
-//comienzo a agregar todo lo necesario para la foto
-public class Producto /*implements Serializable*/ {
+
+public class Producto  {
     
     private int codigo;
     private String nombre;
     private float precio;
     private int cantidad;
     private String descripcion;
-    //private byte[] foto;
+    private Almacen almacen;
     
     public Producto(){
         
     }
 
-    public Producto(int codigo, String nombre, float precio, int cantidad, String descripcion/*, byte[] foto*/) {
+    public Producto(int codigo, String nombre, float precio, int cantidad, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
-        //this.foto = foto;
+        
     }
 
     
@@ -35,7 +34,9 @@ public class Producto /*implements Serializable*/ {
         precio = Float.parseFloat(token.nextToken());
         cantidad = Integer.parseInt(token.nextToken());
         descripcion = token.nextToken();
-        //foto = ;
+        AlmacenCtrl.instancia().buscarAlmacenPorCodigo(Integer.parseInt(token.nextToken()));
+        almacen = AlmacenCtrl.instancia().getAlmacen();
+        
     }
 
     public int getCantidad() {
@@ -78,22 +79,22 @@ public class Producto /*implements Serializable*/ {
         this.descripcion = descripcion;
     }
 
-    /*public byte[] getFoto() {
-        return foto;
+    public Almacen getAlmacen() {
+        return almacen;
     }
 
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
+    public void setAlmacen(Almacen almacen) {
+        this.almacen = almacen;
     }
-    */
+    
     
     public String toRegistro(){
-        return "*" + codigo + "*" + nombre + "*" + precio + "*" + cantidad +  "*" + descripcion;
+        return codigo + "*" + nombre + "*" + precio + "*" + cantidad +  "*" + descripcion + "*" + almacen.getCodigoAlmacen();
     }
     
     @Override 
     public String toString(){
-        return codigo + "  " + nombre + "  " + precio + "  " + cantidad + "  " + descripcion ;
+        return codigo + "  " + nombre + "  " + precio + "  " + cantidad + "  " + descripcion;
     }
     
 }

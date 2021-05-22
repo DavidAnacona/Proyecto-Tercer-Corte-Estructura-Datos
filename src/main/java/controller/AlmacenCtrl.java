@@ -78,4 +78,14 @@ public class AlmacenCtrl {
     public void eliminarAlmacen(){
         listaAlmacen.remove(almacen);
     }
+    public void buscarAlmacenPorCodigo(int codigo){
+        
+        listaAlmacen.inicio();
+        for(int i=0; i<listaAlmacen.size();i++){
+            Almacen alm = listaAlmacen.next();
+            if(alm.getCodigoAlmacen() == codigo){
+                almacen = alm;
+            }
+        }
+    }
 }

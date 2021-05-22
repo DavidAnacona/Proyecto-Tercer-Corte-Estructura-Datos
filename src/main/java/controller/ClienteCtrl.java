@@ -63,21 +63,19 @@ public class ClienteCtrl {
         cliente = listaCliente.contain(index + 1);
         indexClienteSelect = index + 1;
     }
-    /*
-    public void buscarClientePorIdentidad(int NumIdentidad){
+    
+    public void buscarClientePorNumIdentidad(int NumIdentidad){
         cliente = null;
         Cliente cli = null;
         listaCliente.inicio();
-        for(int i=1; i<listaCliente.size(); i++){
+        for(int i=0; i<listaCliente.size(); i++){
             cli = listaCliente.next();
             if(cli.getNumIdentidad() == NumIdentidad){
                 cliente = cli;
             }
         }
-        
-        //Este metodo lo usaremos mas adelante cuando estemos filtrando las busquedas
     }
-    */
+    
     public void modificarCliente(String NumIdentidad, String nombre, String apellido, String correo, 
             String celular, String ciudad, String direccion){
         

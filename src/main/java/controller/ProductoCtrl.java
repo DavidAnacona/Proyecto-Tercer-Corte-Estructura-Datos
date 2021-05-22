@@ -1,5 +1,6 @@
 package controller;
 
+import model.Almacen;
 import model.Producto;
 import persist.ProductoDAO;
 import resources.Cola.Cola;
@@ -10,6 +11,8 @@ public class ProductoCtrl {
     private Cola<Producto> listaProducto;
     private static ProductoCtrl productoCtrl;
     private int indexProductoSelect;
+    
+    
     
     private ProductoCtrl(){
         listaProducto = cargarProductos();
@@ -45,7 +48,7 @@ public class ProductoCtrl {
         this.listaProducto = listaProducto;
     }
     
-    public void addProducto(String codigo, String nombre, String precio, String cantidad, String descripcion){
+    public void addProducto(String codigo, String nombre, String precio, String cantidad, String descripcion, Almacen almacen){
         
         this.producto = new Producto();
         this.producto.setCodigo(Integer.parseInt(codigo));
@@ -53,6 +56,7 @@ public class ProductoCtrl {
         this.producto.setPrecio(Float.parseFloat(precio));
         this.producto.setCantidad(Integer.parseInt(cantidad));
         this.producto.setDescripcion(descripcion);
+        this.producto.setAlmacen(almacen);
         this.listaProducto.add(producto);
     }
     
@@ -65,17 +69,16 @@ public class ProductoCtrl {
         producto = null;
         Producto pro = null;
         listaProducto.inicio();
-        for(int i=1; i<listaProducto.size(); i++){
+        for(int i=0; i<listaProducto.size(); i++){
             pro = listaProducto.next();
-            if(pro.getCodigo() == codigo){
+            if(pro.getCodigo()== codigo){
                 producto = pro;
             }
         }
         
-        //Este metodo lo usaremos mas adelante cuando estemos filtrando las busquedas
     }
     
-    public void modificarProducto (String codigo, String nombre, String precio,String cantidad, String descripcion){
+    public void modificarProducto (String codigo, String nombre, String precio,String cantidad, String descripcion, Almacen almacen){
         
         this.producto = new Producto();
         this.producto.setCodigo(Integer.parseInt(codigo));
@@ -83,11 +86,26 @@ public class ProductoCtrl {
         this.producto.setPrecio(Float.parseFloat(precio));
         this.producto.setCantidad(Integer.parseInt(cantidad));
         this.producto.setDescripcion(descripcion);
+        this.producto.setAlmacen(almacen);
         this.listaProducto.set(indexProductoSelect, producto);
     }
     
     public void guardarProducto(){
         ProductoDAO.instancia().guardarProductos(listaProducto);
+    }
+    
+    public ModeloProductos buscarProductoPorAlmacen(Object almacen){
+        Almacen alm = (Almacen)almacen;
+        Cola<Producto> listaFiltrada = new Cola();
+        listaProducto.inicio();
+        for(int i = 0; i < listaProducto.size(); i++){
+            Producto pro = listaProducto.next();
+            if(pro.getAlmacen().getCodigoAlmacen() == alm.getCodigoAlmacen()){
+                listaFiltrada.add(pro);
+            }
+        }
+        ModeloProductos modelo = new ModeloProductos(listaFiltrada);
+        return modelo;
     }
     
     public void eliminarProducto(){

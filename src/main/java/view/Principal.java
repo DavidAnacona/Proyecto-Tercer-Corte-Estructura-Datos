@@ -21,6 +21,8 @@ public class Principal extends javax.swing.JFrame {
         opGestionarProducto = new javax.swing.JMenuItem();
         menuAlmacen = new javax.swing.JMenu();
         opGestionarAlmacen = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        opGestionarFactura = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +78,19 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuAlmacen);
 
+        jMenu1.setText("Factura");
+
+        opGestionarFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        opGestionarFactura.setText("Gestionar Factura");
+        opGestionarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opGestionarFacturaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(opGestionarFactura);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,9 +116,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_opGestionarClienteActionPerformed
 
     private void opGestionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGestionarProductoActionPerformed
-        Producto producto = new Producto();
-        escritorio.add(producto);
-        producto.show();
+        Productos productos = new Productos();
+        escritorio.add(productos);
+        productos.show();
     }//GEN-LAST:event_opGestionarProductoActionPerformed
 
     private void opGestionarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGestionarAlmacenActionPerformed
@@ -111,6 +126,12 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(almacen);
         almacen.show();
     }//GEN-LAST:event_opGestionarAlmacenActionPerformed
+
+    private void opGestionarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGestionarFacturaActionPerformed
+        Factura factura = new Factura();
+        escritorio.add(factura);
+        factura.show();
+    }//GEN-LAST:event_opGestionarFacturaActionPerformed
 
     
     public static void main(String args[]) {
@@ -147,12 +168,14 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuAlmacen;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenu menuProducto;
     private javax.swing.JMenuItem opGestionarAlmacen;
     private javax.swing.JMenuItem opGestionarCliente;
+    private javax.swing.JMenuItem opGestionarFactura;
     private javax.swing.JMenuItem opGestionarProducto;
     // End of variables declaration//GEN-END:variables
 }

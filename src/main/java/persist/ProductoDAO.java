@@ -10,7 +10,7 @@ import resources.Cola.Cola;
 
 
 
-public class ProductoDAO {
+public class ProductoDAO{
     
     private String fileName;
     private BufferedWriter bw;
@@ -41,6 +41,7 @@ public class ProductoDAO {
             }
             bw.close();
             mensaje = "Registro agregado con exito";
+            
         }catch(IOException e){
             mensaje = "Error al agregar el registro" + e.getMessage();
         }
@@ -52,6 +53,7 @@ public class ProductoDAO {
         Producto producto;
         Cola<Producto> cola = new Cola();
         String linea;
+        String mensaje = "";
         try{
             br = new BufferedReader(new FileReader(fileName));
             linea = br.readLine();
@@ -62,7 +64,7 @@ public class ProductoDAO {
             }
             br.close();
         }catch(IOException e){
-            
+            mensaje = "Error en la lectura del archivo " + e.getMessage();
         }
         return cola;
     }

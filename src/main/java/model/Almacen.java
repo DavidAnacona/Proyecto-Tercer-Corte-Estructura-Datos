@@ -53,11 +53,11 @@ public class Almacen {
     }
     
     public String toRegistro(){
-        return "*" + codigoAlmacen + "*" + nombreSede + "*" + direccion;
+        return codigoAlmacen + "*" + nombreSede + "*" + direccion;
     }
 
     @Override
     public String toString(){
-        return codigoAlmacen + "  " + nombreSede + "  " + direccion;
+        return  nombreSede + "  " + direccion;
     }
 }
